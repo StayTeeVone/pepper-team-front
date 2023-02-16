@@ -1,0 +1,27 @@
+<div class="container-form">
+    <div class="logo_left">
+        <img src="/assets/imgs/pepper_256px.png" alt="pepper_logo" height="75" width="75">
+    </div>
+    <p>User Sign In</p>
+    <form (ngSubmit)="onSubmit(usersForm)" #usersForm = "ngForm">
+        <div class="form-group">
+            <label for="email" class="label-h">Email</label>
+            <input type="email" ngModel #email = 'ngModel' 
+            class="form-control" name="email" placeholder="Your email">                               
+        </div>
+        <div class="form-group">
+            <label for="password" class="label-h">Password</label>
+            <input type="password" ngModel #password = 'ngModel' 
+            class="form-control"  name="password" placeholder="Your password">
+        </div>
+        <div class="form-group">						
+                <button id="btn-login" type="submit" class="btn btn-success">Login</button>
+        </div>
+    </form>
+    <div class="form-group-toRegistration">
+        <p>Don't have an account?
+            <button (click)="goToRegister()" class="btn btn-primary small-btn">Register</button>
+        </p>
+    </div>
+</div>
+

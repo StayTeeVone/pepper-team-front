@@ -1,0 +1,25 @@
+.container-form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+.form-group {
+    margin: 10px 5px;
+    text-align: center;
+}
+
+.form-group-toLogin, .small-btn{
+    margin: 5px 5px;
+    text-align: center;
+    font-size: 85%; 
+    position: relative; 
+}
+
+.label-h {
+    display: flex;
+}

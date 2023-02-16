@@ -1,0 +1,41 @@
+<div class="container-form">
+    <div class="logo_left">
+        <img src="/assets/imgs/pepper_256px.png" alt="pepper_logo" height="75" width="75">
+    </div>
+    <p>User Sign Up</p>
+    <form (ngSubmit)="onSubmit(usersForm)" #usersForm = "ngForm">
+        <div class="form-group">
+			<label for="name" class="label-h">Name</label>
+				<input type="text" class="form-control" 
+				[(ngModel)]='user.name' ngModel #name = 'ngModel'
+				name="name" placeholder="Your name">
+		</div>
+		<div class="form-group">
+			<label for="email" class="label-h">Email</label>
+				<input type="email" class="form-control" 
+				[(ngModel)]='user.email' ngModel #email = 'ngModel'
+				name="email" placeholder="Your email">
+		</div>
+		<div class="form-group">
+			<label for="phone" class="label-h">Phone</label>
+				<input type="text" class="form-control" 
+				[(ngModel)]='user.phone' ngModel #phone = 'ngModel'
+				name="phone" placeholder="Your number phone">
+		</div>
+		<div class="form-group">
+			<label for="password" class="label-h">Password</label>
+				<input type="password" class="form-control" 
+				[(ngModel)]='user.password' ngModel #password = 'ngModel'
+				name="password" placeholder="Your passwrod">
+		</div>						
+		<div class="form-group">						            
+			<button type="submit" class="btn btn-success">Sign Up</button>
+		</div>
+    </form>
+	<div class="form-group-toLogin">
+		<p>Have an account?
+			<button (click)="goToLogin()" class="btn btn-primary small-btn">Sign In</button>
+		</p>
+	</div>
+</div>
+

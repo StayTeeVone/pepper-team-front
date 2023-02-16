@@ -1,0 +1,25 @@
+.form-group-toRegistration, .small-btn{
+    margin: 5px 5px;
+    text-align: center;
+    font-size: 85%; 
+    position: relative; 
+}
+
+.container-form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.form-group {
+    margin: 10px 5px;
+    text-align: center;
+}
+
+.label-h {
+    display: flex;
+}
