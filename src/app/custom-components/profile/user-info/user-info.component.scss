@@ -1,0 +1,23 @@
+:host{
+    display: flex;
+    height: 25%;
+    border-bottom: 3px solid red;
+    // position: absolute;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 35%;
+    justify-content: center;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 65%;
+}
+

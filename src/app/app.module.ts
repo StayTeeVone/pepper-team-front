@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { localStorageService } from './shared-services/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [localStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

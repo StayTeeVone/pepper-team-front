@@ -1,18 +1,32 @@
+:host {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-form {
+    min-width: 290px;
+    opacity: 0.9;
+    padding: 20px;
+    margin: 5px 10px;
+    border-radius: 5px 0;
+    border: 3px solid rgb(217, 247, 187);
+}
+
 .form-group-toRegistration, .small-btn{
     margin: 5px 5px;
     text-align: center;
     font-size: 85%; 
     position: relative; 
-}
-
-.container-form {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: white;
 }
 
 .form-group {
@@ -22,4 +36,38 @@
 
 .label-h {
     display: flex;
+}
+
+.btn-login {
+    background-color: #9acd32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    min-height:30px; 
+    min-width: 80px;
+}
+
+.btn-login:hover {
+    background-color: #7aa524;
+    transition: 0.7s;
+}
+
+.btn-to-register {
+    background-color: rgb(60, 164, 233);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    min-height:30px; 
+    min-width: 80px;
+}
+
+.btn-to-register:hover {
+    background-color: rgb(12, 104, 165);
+    transition: 0.7s;
+}
+
+.error{
+    color: red;
 }

@@ -1,8 +1,9 @@
 <div class="container-form">
-    <div class="logo_left">
-        <img src="/assets/imgs/pepper_256px.png" alt="pepper_logo" height="75" width="75">
+    <div class="logo">
+        <img src="/assets/imgs/pepper_512px_sec.png" alt="pepper_logo" height="150" width="150">
+        <p>User Sign In</p>
     </div>
-    <p>User Sign In</p>
+    
     <form (ngSubmit)="onSubmit(usersForm)" #usersForm = "ngForm">
         <div class="form-group">
             <label for="email" class="label-h">Email</label>
@@ -14,14 +15,16 @@
             <input type="password" ngModel #password = 'ngModel' 
             class="form-control"  name="password" placeholder="Your password">
         </div>
+        <ng-container *ngIf="error$ | async as error">
+            <span class="error">{{error}}</span>
+        </ng-container>
         <div class="form-group">						
-                <button id="btn-login" type="submit" class="btn btn-success">Login</button>
+                <button type="submit" class="btn-login">Login</button>
         </div>
     </form>
     <div class="form-group-toRegistration">
         <p>Don't have an account?
-            <button (click)="goToRegister()" class="btn btn-primary small-btn">Register</button>
+            <button (click)="goToRegister()" class="btn-to-register small-btn">Register</button>
         </p>
     </div>
 </div>
-

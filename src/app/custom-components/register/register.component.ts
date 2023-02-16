@@ -28,12 +28,7 @@ export class RegisterComponent implements OnInit {
       role: 0
     }
     // console.log(this.user);
-    this.userService.createWorker(this.user).subscribe(() => this.goToLogin());
-
-    setTimeout(() => {
-      window.alert('You are successful registration.');
-    }, 500);
-    
+    this.userService.createUser(this.user).subscribe(() => this.goToLogin());
   };
 
   goToLogin(): void {

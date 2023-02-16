@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./custom-components/profile/profile.module').then (m => m.ProfileModule)
+  },
   {path:'', redirectTo: 'login', pathMatch: 'full'},
   {path:'**', component: LoginComponent}
 ];
