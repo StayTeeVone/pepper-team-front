@@ -47,7 +47,7 @@ export class UserService {
         )
     }
 
-    updateUser(updatedUser: iUsers): Observable<any> {
+    updateUser(updatedUser: iUsers): Observable<iUsers[]> {
         return this.http.put<any>(this.url + '/' + updatedUser.id_user, updatedUser).pipe(
             tap(() => console.log('updated user')),
             catchError((error) => throwError(error))
