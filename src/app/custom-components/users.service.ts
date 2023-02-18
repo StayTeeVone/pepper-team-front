@@ -46,6 +46,13 @@ export class UserService {
             catchError(err => throwError('Invalid email or password.'))
         )
     }
+
+    updateUser(updatedUser: iUsers): Observable<any> {
+        return this.http.put<any>(this.url + '/' + updatedUser.id_user, updatedUser).pipe(
+            tap(() => console.log('updated user')),
+            catchError((error) => throwError(error))
+        );
+    }
 }
 
 
