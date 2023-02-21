@@ -18,6 +18,7 @@ import { localStorageService } from './shared-services/local-storage.service';
     LoginComponent,
     RegisterComponent
   ],
+  
   imports: [
     CommonModule,
     FormsModule,
