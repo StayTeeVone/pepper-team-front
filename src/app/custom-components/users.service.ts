@@ -47,9 +47,9 @@ export class UserService {
         )
     }
 
-    updateUser(updatedUser: iUsers): Observable<iUsers[]> {
-        return this.http.put<any>(this.url + '/' + updatedUser.id_user, updatedUser).pipe(
-            tap(() => console.log('updated user')),
+    updateUser(updatedUser: Partial<iUsers>): Observable <Partial<iUsers>> {
+        return this.http.put<Partial<iUsers>>(this.url + '/' + updatedUser.id_user, updatedUser).pipe(
+            tap((partialUser) => console.log(partialUser.name, partialUser.phone, partialUser.email)),
             catchError((error) => throwError(error))
         );
     }
