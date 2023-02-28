@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http"
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { tap, catchError, delay, map } from 'rxjs/operators';
-import { Observable, throwError } from "rxjs";
+import { Observable, throwError } from 'rxjs';
 import * as bcrypt from 'bcryptjs';
 import { localStorageService } from '../shared-services/local-storage.service';
 
 export interface iUsers {
-    id_user: number; 
+    id_user: number;
     name: string;
     email: string;
     phone: string;
@@ -32,9 +32,10 @@ export class UserService {
         return this.http.get<iUsers[]>(this.url).pipe(
             delay(1000),
             map(users => {
-                const checkedUser = users.filter(user => {return user.email === email && bcrypt.compareSync(password, user.password)})
-                if(checkedUser.length !== 0){
+                const checkedUser = users.filter(user => user.email === email && bcrypt.compareSync(password, user.password));
+                if (checkedUser.length !== 0) {
                     this.isAutentificated = true;
+                    this.localStorage.setToStorage('id_user', checkedUser[0].id_user.toString());
                     this.localStorage.setToStorage('name', checkedUser[0].name);
                     this.localStorage.setToStorage('email', checkedUser[0].email);
                     this.localStorage.setToStorage('phone', checkedUser[0].phone);
@@ -44,7 +45,7 @@ export class UserService {
                 }
             }),
             catchError(err => throwError('Invalid email or password.'))
-        )
+        );
     }
 
     updateUser(updatedUser: Partial<iUsers>): Observable <Partial<iUsers>> {

@@ -1,11 +1,14 @@
-<div class="lists-btn">
-    <button type="submit" class="btn-list" (click)="goToEdit()">Редагувати користувача</button>
+<div class="lists-btn" >
+
+  <select  [(ngModel)]="status" (change)="onSelectChange()">
+
+    <option  value="edit" > Редагування</option>
+
+    <option name="black" value="black">black</option>
+    <option name="sss" >purple</option>
+  </select>
+
     <button type="submit" class="btn-list">Мої друзі</button>
     <button type="submit" class="btn-list">Новини</button>
-    <button type="submit" class="btn-list">Політика</button>
-    <button type="submit" class="btn-list">Групи</button>
-    <button type="submit" class="btn-list">Фотострічка</button>
-    <button type="submit" class="btn-list">Чорний список</button>
-    <button type="submit" class="btn-list">Адмін панель</button>
-    <button type="submit" class="btn-list">Інше</button>
+
 </div>
