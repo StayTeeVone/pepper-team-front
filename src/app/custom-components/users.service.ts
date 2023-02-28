@@ -21,6 +21,17 @@ export class UserService {
 
     constructor(private http: HttpClient, private localStorage: localStorageService) { }
 
+    getAllUsers(): Observable<iUsers[]> {
+      return this.http.get<iUsers[]>(this.url).pipe(
+        tap(() => console.log('get all users')),
+        catchError((error) => throwError(error))
+      );
+    }
+
+    getPhoto(id_user: number): Observable<Blob> {
+      return this.http.get(this.url + '/get-photo/' + id_user, {responseType : 'blob'});
+    }
+
     createUser(newWorker: iUsers): Observable<any> {
         return this.http.post<any>(this.url, newWorker).pipe(
             tap(() => console.log('added users')),
@@ -55,6 +66,3 @@ export class UserService {
         );
     }
 }
-
-
-
