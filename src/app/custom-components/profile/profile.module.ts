@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { ProfileContentComponent } from './profile-content/profile-content.component';
 import { SidebarComponent } from './profile-content/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
 import { EditUserComponent } from 'src/app/custom-components/profile/profile-content/edit-user/edit-user.component';
 
 const routes: Routes = [
     {
       path: '',
-      component: ProfileComponent, 
+      component: ProfileComponent,
       children: [
         {
           path: 'main-info-edit',
@@ -31,6 +33,8 @@ const routes: Routes = [
     EditUserComponent
   ],
   imports: [
+    FormsModule,
+    HttpClientModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],

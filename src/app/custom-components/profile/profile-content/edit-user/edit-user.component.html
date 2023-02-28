@@ -1,2 +1,40 @@
 <ng-content></ng-content>
-<p>edit-user works!</p>
+<form (ngSubmit)="onSubmit(userForm)" #userForm = "ngForm">
+    <p class="mainTextHeader"><b>Редагування даних користувача</b></p>
+
+    <div class="formGroup">
+      <label> Введите новое имя :</label> <br>
+      <input type="text" name="name"
+             [(ngModel)]='user.name'
+             ngModel #name = 'ngModel'> <br> <br>
+    </div>
+
+    <div class="formGroup">
+      <label>Введите новую почту:</label> <br>
+      <input type="text" name="email"
+             [(ngModel)]='user.email'
+             ngModel #email = 'ngModel'> <br> <br>
+    </div>
+
+    <div class="formGroup">
+      <label>Введите новый номер телефона:</label> <br>
+      <input type="text" name="phone"
+             [(ngModel)]='user.phone'
+             ngModel #phone = 'ngModel'> <br> <br>
+    </div>
+
+    <div class="formGroup">
+      <label>Введите новый пароль:</label> <br>
+      <input type="password" name="password"
+             [(ngModel)]='user.password'
+             ngModel #password = 'ngModel'> <br> <br>
+    </div>
+
+
+    <div class="formGroup">
+      <button type="submit" class="btn-list_2">Добавить в базу</button>
+    </div>
+
+
+</form>
+
