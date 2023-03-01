@@ -10,6 +10,7 @@ import {iUsers, UserService} from '../../../users.service';
 })
 export class SidebarComponent implements OnInit {
 
+  toggle = false;
   status: string;
   user: iUsers = {id_user: null, name: '', email: '', password: '', phone: '', role: null};
   allUsers: iUsers[];
@@ -21,15 +22,11 @@ export class SidebarComponent implements OnInit {
   goToEdit(): void {
     this.router.navigate(['profile/main-info-edit']);
   }
+
   update(id: number): void {
     this.user = Object.assign({}, this.allUsers.find(user => user.id_user === id));
     if (!this.user) {
       return;
-    }
-  }
-  onSelectChange(): void {
-    if (this.status === 'edit') {
-      this.goToEdit();
     }
   }
 }

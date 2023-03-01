@@ -1,14 +1,7 @@
 <div class="lists-btn" >
-
-  <select  [(ngModel)]="status" (change)="onSelectChange()">
-
-    <option  value="edit" > Редагування</option>
-
-    <option name="black" value="black">black</option>
-    <option name="sss" >purple</option>
-  </select>
-
+    <button type="submit" class="btn-list" (click)="toggle = !toggle">Налаштування &#8659;</button>
+    <button type="submit" class="btn-list-settings" *ngIf="toggle" (click)="goToEdit()">Редагування користувача</button>
+    <button type="submit" class="btn-list-settings" *ngIf="toggle">Оновлення фото</button>
     <button type="submit" class="btn-list">Мої друзі</button>
     <button type="submit" class="btn-list">Новини</button>
-
 </div>

@@ -1,6 +1,6 @@
 <ng-content></ng-content>
 <form (ngSubmit)="onSubmit(userForm)" #userForm = "ngForm">
-    <p class="mainTextHeader"><b>Редагування даних користувача</b></p>
+    <p class="header-form-update"><b>Редагувати свої дані:</b></p>
 
     <div class="formGroup">
       <label> Введите новое имя :</label> <br>
@@ -11,7 +11,7 @@
 
     <div class="formGroup">
       <label>Введите новую почту:</label> <br>
-      <input type="text" name="email"
+      <input type="email" name="email"
              [(ngModel)]='user.email'
              ngModel #email = 'ngModel'> <br> <br>
     </div>
@@ -32,7 +32,7 @@
 
 
     <div class="formGroup">
-      <button type="submit" class="btn-list_2">Добавить в базу</button>
+      <button type="submit" class="btn-update-user">Добавить в базу</button>
     </div>
 
 
