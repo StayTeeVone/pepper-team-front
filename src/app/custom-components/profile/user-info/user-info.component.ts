@@ -7,10 +7,11 @@ import {Observable} from "rxjs";
 export interface Link {
     id: number;
     mySrc: any;
-  }
-  export interface ExtendUser extends iUsers{
+}
+
+export interface ExtendUser extends iUsers{
   source: any;
-  }
+}
 
 @Component({
   selector: 'user-info',
@@ -20,9 +21,8 @@ export interface Link {
 })
 export class UserInfoComponent implements OnInit {
 
-
   allUsers$ = this.userService.getAllUsers().pipe(tap(users => {
-  users.forEach(user => this.getPhoto(user.id_user));
+    users.forEach(user => this.getPhoto(user.id_user));
   }));
   isImageLoading = false;
   source: Link[] = [];
@@ -35,7 +35,7 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.localStorage.getFromStorage('name');
     this.email = this.localStorage.getFromStorage('email');
-    this. phone = this.localStorage.getFromStorage('phone');
+    this.phone = this.localStorage.getFromStorage('phone');
   }
 
   createImageFromBlob(id_user: number, photo: Blob): any {
@@ -54,7 +54,6 @@ export class UserInfoComponent implements OnInit {
 
   getSource(id_user: number): any{
     return this.source.find(item => item.id === id_user)?.mySrc;
-
   }
 
   getPhoto(id_user: number): void {
@@ -63,10 +62,9 @@ export class UserInfoComponent implements OnInit {
       this.createImageFromBlob(id_user, photo);
       this.isImageLoading = false;
     },
-      error => {
+    error => {
       this.isImageLoading = false;
       console.error(error);
-      });
+    });
   }
-
 }
