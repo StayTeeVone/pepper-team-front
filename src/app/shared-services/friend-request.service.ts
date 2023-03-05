@@ -18,6 +18,13 @@ export class FriendRequestService {
             catchError((error) => throwError(error))
         )
     }
+
+    getFriendList(): Observable<IFriend[]> {
+        return this.http.get<IFriend[]>(this.url).pipe(
+            tap(() => console.log('get all friends')),
+            catchError((error) => throwError(error))
+        )
+    }
     
     createRequest(id_friend: number): Observable<any> {
         const id_user = this.localStorage.getFromStorage('id_user');

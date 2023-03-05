@@ -22,18 +22,28 @@
         <div class="request-list" *ngIf="allRequests$ | async as allRequests">
             <ul class="list-users-ul">
                 <li *ngFor="let user of allRequests" class="list-users-li">
-                    <img [src]="getSource(user.id_user)" style="width: 100px; height: 100px;"> {{user.name}} 
-                    <ng-container *ngIf="!user.owner; else Owner">
-                        <span><button class="accept" (click)="acceptRequest(user.id_user)" *ngIf="!user.status">Accept</button><button class="decline">Decline</button></span>
-                    </ng-container>
-                    <ng-template #Owner>
-                        <span><button class="delete">Delete</button></span>
-                    </ng-template>    
+                    <div class="photo">
+                        <img [src]="getSource(user.id_user)" style="width: 100px; height: 100px;">
+                    </div> 
+                        <div class="info">{{user.name}} 
+                        <ng-container *ngIf="!user.owner; else Owner">
+                            <span><button class="accept" (click)="acceptRequest(user.id_user)" *ngIf="!user.status">Прийняти</button><button class="decline">Відмінити</button></span>
+                        </ng-container>
+                        <ng-template #Owner>
+                            <span><button class="delete">Відмінити запит</button></span>
+                        
+                        </ng-template>    
+                    </div>
                 </li>
             </ul>
         </div>
-        <div class="my-friend">
-            <p>This container is for my friend list.</p>
+<hr>         
+        <div class="request-list" *ngIf="allFriends$ | async as allFriends">
+            <ul class="list-users-ul">
+                <li *ngFor="let friend of allFriends" class="list-users-li">
+                    <img [src]="getSource(friend.id_user)" style="width: 100px; height: 100px;"> {{friend.status}}
+                </li>
+            </ul>
         </div>
-    </div>
+    </div>    
 </div>

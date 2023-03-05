@@ -24,6 +24,8 @@ export interface ExtendUser extends iUsers{
 })
 export class UserListComponent implements OnInit {
 
+  allFriends$ : Observable<IFriend[]> = this.friendRequestService.getFriendList();
+
   allUsers$ = this.userService.getAllUsers().pipe(
     map(users => {
       const id_user = this.localStorage.getFromStorage('id_user');

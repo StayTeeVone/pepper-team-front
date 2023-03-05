@@ -56,6 +56,7 @@
 .add-to-friend:hover {
     background-color: rgb(160, 241, 255);
     border: none;
+    transition: .7s;
 }
 
 .info {
@@ -73,9 +74,54 @@
 .content {
     display: flex;
     flex-direction: row;
+    box-shadow: 0 0 40px rgb(195, 246, 255);
+    border-radius: 15px;
+    margin-top: 20px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+}
+
+.delete{
+    border: none;
+    background-color: rgb(233, 102, 102);
+    font-weight: 250;
+    color: white;
+    font-size: 14px;
+    max-width: 200px;
+    min-width: 200px;
+}
+
+.delete:hover{
+    background-color: rgb(187, 64, 64);
+    transition: .7s;
+}
+
+.accept, .decline{
+    border: none;
+    font-weight: 250;
+    color: white;
+    font-size: 14px;
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.accept{
+    background-color: rgb(132, 219, 132);
+}
+
+.accept:hover{
+    background-color: rgb(69, 211, 69);
+    transition: .7s;
+}
+
+.decline{
+    background-color: rgb(233, 102, 102);
+}
+
+.decline:hover{
+    background-color: rgb(187, 64, 64);
+    transition: .7s;
 }
