@@ -23,6 +23,10 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['profile/main-info-edit']);
   }
 
+  goToUserList(): void {
+    this.router.navigate(['user-list']);
+  }
+
   update(id: number): void {
     this.user = Object.assign({}, this.allUsers.find(user => user.id_user === id));
     if (!this.user) {

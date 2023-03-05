@@ -14,12 +14,4 @@
         <p>Номер телефону: {{phone}} </p>
     </ng-container>
 </div>
-<div class="all-users" *ngIf="allUsers$ | async as allUsers">
-    <ul>
-      <li *ngFor=" let user of allUsers">
-        <img [src]="getSource(user.id_user)" style="width: 25px; height: 25px">{{user.name}}
-      </li>
-    </ul>
-
-</div>
 

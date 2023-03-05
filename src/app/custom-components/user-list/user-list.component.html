@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="header">
+        <div class="to-profile">
+            <button class="btn-to-profile" (click)="goToProfile()">Повернутись на головну сторінку</button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="all-users" *ngIf="allUsers$ | async as allUsers">
+            <ul class="list-users-ul">
+                <li *ngFor="let user of allUsers" class="list-users-li">
+                    <div class="photo">
+                        <img [src]="getSource(user.id_user)" style="width: 100px; height: 100px;"> 
+                    </div>
+                    <div class="info">
+                        {{user.name}} 
+                        <button type="submit" class="add-to-friend" (click)="createRequest(user.id_user)">+ Додати в друзі</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+<hr>
+        <div class="request-list" *ngIf="allRequests$ | async as allRequests">
+            <ul class="list-users-ul">
+                <li *ngFor="let user of allRequests" class="list-users-li">
+                    <img [src]="getSource(user.id_user)" style="width: 100px; height: 100px;"> {{user.name}} 
+                    <ng-container *ngIf="!user.owner; else Owner">
+                        <span><button class="accept" (click)="acceptRequest(user.id_user)" *ngIf="!user.status">Accept</button><button class="decline">Decline</button></span>
+                    </ng-container>
+                    <ng-template #Owner>
+                        <span><button class="delete">Delete</button></span>
+                    </ng-template>    
+                </li>
+            </ul>
+        </div>
+        <div class="my-friend">
+            <p>This container is for my friend list.</p>
+        </div>
+    </div>
+</div>

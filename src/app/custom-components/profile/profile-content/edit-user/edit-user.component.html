@@ -1,30 +1,30 @@
 <ng-content></ng-content>
-<form (ngSubmit)="onSubmit(userForm)" #userForm = "ngForm">
+<form (ngSubmit)="onSubmit(userForm)" #userForm = "ngForm" class="user-edit-form">
     <p class="header-form-update"><b>Редагувати свої дані:</b></p>
 
     <div class="formGroup">
-      <label> Введите новое имя :</label> <br>
+      <label>Введіть нове ім'я:</label> <br>
       <input type="text" name="name"
              [(ngModel)]='user.name'
              ngModel #name = 'ngModel'> <br> <br>
     </div>
 
     <div class="formGroup">
-      <label>Введите новую почту:</label> <br>
+      <label>Введіть новий адрес пошти:</label> <br>
       <input type="email" name="email"
              [(ngModel)]='user.email'
              ngModel #email = 'ngModel'> <br> <br>
     </div>
 
     <div class="formGroup">
-      <label>Введите новый номер телефона:</label> <br>
+      <label>Введіть новий номер телефону:</label> <br>
       <input type="text" name="phone"
              [(ngModel)]='user.phone'
              ngModel #phone = 'ngModel'> <br> <br>
     </div>
 
     <div class="formGroup">
-      <label>Введите новый пароль:</label> <br>
+      <label>Введіть новий пароль:</label> <br>
       <input type="password" name="password"
              [(ngModel)]='user.password'
              ngModel #password = 'ngModel'> <br> <br>

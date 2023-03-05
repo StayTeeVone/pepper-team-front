@@ -12,6 +12,7 @@ export interface iUsers {
     phone: string;
     password: string;
     role: number;
+    owner?: boolean; 
 }
 
 @Injectable()
