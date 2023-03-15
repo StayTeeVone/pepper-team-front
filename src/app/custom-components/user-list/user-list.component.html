@@ -5,7 +5,8 @@
         </div>
     </div>
     <div class="content">
-        <div class="all-users" *ngIf="allUsers$ | async as allUsers">
+        <div class="container-users-list" *ngIf="allUsers$ | async as allUsers">
+            <h4 class="title-for-users-list">Всі користувачі:</h4>
             <ul class="list-users-ul">
                 <li *ngFor="let user of allUsers" class="list-users-li">
                     <div class="photo">
@@ -18,30 +19,36 @@
                 </li>
             </ul>
         </div>
-<hr>
-        <div class="request-list" *ngIf="allRequests$ | async as allRequests">
-            <ul class="list-users-ul">
-                <li *ngFor="let user of allRequests" class="list-users-li">
+        <div class="container-requests-list">
+            <h4 class="title-for-requests-list">Активні запити в друзі:</h4>
+            <ul class="list-requests-ul">
+                <li *ngFor="let user of allRequests" class="list-requests-li">
                     <div class="photo">
                         <img [src]="getSource(user.id_user)" style="width: 100px; height: 100px;">
                     </div> 
-                        <div class="info">{{user.name}} 
+                    <div class="info">{{user.name}} 
                         <ng-container *ngIf="!user.owner; else Owner">
-                            <span><button class="accept" (click)="acceptRequest(user.id_user)" *ngIf="!user.status">Прийняти</button><button class="decline">Відмінити</button></span>
+                            <span><button class="accept" (click)="acceptRequest(user.id_user)" *ngIf="!user.status">Прийняти</button><button (click)="deleteRequest(user.id_user)" class="decline">Відмінити</button></span>
                         </ng-container>
                         <ng-template #Owner>
-                            <span><button class="delete">Відмінити запит</button></span>
-                        
+                            <span><button class="delete" (click)="deleteRequest(user.id_user)">Відмінити запит</button></span>
                         </ng-template>    
                     </div>
                 </li>
             </ul>
         </div>
-<hr>         
-        <div class="request-list" *ngIf="allFriends$ | async as allFriends">
-            <ul class="list-users-ul">
-                <li *ngFor="let friend of allFriends" class="list-users-li">
-                    <img [src]="getSource(friend.id_user)" style="width: 100px; height: 100px;"> {{friend.status}}
+        <div class="container-friends-list">
+            <h4 class="title-for-friends-list">Мої друзі:</h4>
+            <ul class="list-friends-ul">
+                <li *ngFor="let friend of allFriends" class="list-friends-li">
+                    <div class="photo">
+                        <img [src]="getSource(friend.id_user)" style="width: 100px; height: 100px;"> 
+                    </div>
+                    <div class="info"> 
+                        {{friend.name}}
+                        <button type="submit" (click)="deleteRequest(friend.id_user)" class="remove-from-friend" >Видалити із друзів</button>
+                        <button type="submit" (click)="sendMessage(friend.id_user)" class="send-message-friend" >Особисті повідомлення</button>
+                    </div>
                 </li>
             </ul>
         </div>

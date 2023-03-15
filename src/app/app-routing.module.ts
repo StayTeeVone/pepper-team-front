@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ChatComponent } from './custom-components/chat/chat.component';
 import { LoginComponent } from './custom-components/login/login.component';
 import { RegisterComponent } from './custom-components/register/register.component';
 import { UserListComponent } from './custom-components/user-list/user-list.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'user-list',
     component: UserListComponent
+  },
+  {
+    path: 'chat/:id_user/:id_friend',
+    component: ChatComponent
   },
   {path:'', redirectTo: 'login', pathMatch: 'full'},
   {path:'**', component: LoginComponent}

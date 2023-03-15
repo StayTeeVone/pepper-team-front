@@ -33,6 +33,13 @@ export class UserService {
       return this.http.get(this.url + '/get-photo/' + id_user, {responseType : 'blob'});
     }
 
+    getUserByID(id_user: number): Observable<iUsers> {
+        return this.http.get<iUsers>(this.url + '/' + id_user).pipe(
+            tap(() => console.log('get user')),
+            catchError((error) => throwError(error))
+          );
+    }
+
     createUser(newWorker: iUsers): Observable<any> {
         return this.http.post<any>(this.url, newWorker).pipe(
             tap(() => console.log('added users')),

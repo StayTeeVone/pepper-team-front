@@ -41,4 +41,12 @@ export class FriendRequestService {
             catchError((error) => throwError(error))
         );
     }
+
+    deleteRequest(id_user: number, id_friend: number): Observable<any> {
+        return this.http.delete<any>(this.url + '/' + id_user + '/' + id_friend).pipe(
+            tap(() => console.log('request was deleted')),
+            catchError((error) => throwError(error))
+        );
+    }
+
 }

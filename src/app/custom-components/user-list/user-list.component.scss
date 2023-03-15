@@ -2,25 +2,41 @@
     display: flex;
     overflow-y: scroll;
     width: 100%;
+    height: 100%;
 }
 
-.list-users-ul {
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 -10px 50px rgb(245, 191, 191);
+    border-radius: 15px;
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-users-ul, .list-requests-ul, .list-friends-ul{
     list-style-type: none;
     font-size: 20px;
     margin: 0 35px;
     font-weight: 500;
 }
 
-.list-users-li {
+.list-users-li, .list-requests-li, .list-friends-li {
     margin: 10px;
     display: flex;
     flex-direction: row;
 }
-
-// .to-profile {
-//     margin-top: 50px;
-//     margin-left: 65px;
-// }
 
 .btn-to-profile {
     background-color: rgb(201, 54, 54);
@@ -37,10 +53,6 @@
     background-color: rgb(141, 25, 25);
     transition: 0.7s;
 }
-  
-.btn-to-profile:focus {
-    background-color: rgb(141, 25, 25);
-}
 
 .add-to-friend {
     border: none;
@@ -49,39 +61,36 @@
     color: gray;
     font-size: 14px;
     cursor: cell;
-    max-width: 150px;
-    min-width: 150px;
+    max-width: 200px;
+    min-width: 200px;
 }
 
 .add-to-friend:hover {
-    background-color: rgb(160, 241, 255);
-    border: none;
+    background-color: rgb(124, 198, 211);
     transition: .7s;
+    color: black;
+}
+
+.remove-from-friend{
+    border: none;
+    background-color: rgb(233, 102, 102);
+    font-weight: 250;
+    color: white;
+    font-size: 14px;
+    max-width: 200px;
+    min-width: 200px;
+}
+
+.remove-from-friend:hover {
+    background-color: rgb(187, 64, 64);
+    transition: .7s;
+    color: black;
 }
 
 .info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.content {
-    display: flex;
-    flex-direction: row;
-    box-shadow: 0 0 40px rgb(195, 246, 255);
-    border-radius: 15px;
-    margin-top: 20px;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
 }
 
 .delete{
@@ -97,6 +106,7 @@
 .delete:hover{
     background-color: rgb(187, 64, 64);
     transition: .7s;
+    color: black;
 }
 
 .accept, .decline{
@@ -113,8 +123,9 @@
 }
 
 .accept:hover{
-    background-color: rgb(69, 211, 69);
+    background-color: rgb(56, 158, 56);
     transition: .7s;
+    color: black;
 }
 
 .decline{
@@ -124,4 +135,32 @@
 .decline:hover{
     background-color: rgb(187, 64, 64);
     transition: .7s;
+    color: black;
+}
+
+.title-for-users-list, .title-for-requests-list, .title-for-friends-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    color: rgb(61, 61, 61);
+}
+
+.send-message-friend {
+    border: none;
+    max-width: 200px;
+    min-width: 200px;
+    border: none;
+    background-color: rgb(195, 246, 255);
+    font-weight: 250;
+    color: gray;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.send-message-friend:hover {
+    background-color: rgb(124, 198, 211);
+    transition: .7s;
+    color: black;
 }

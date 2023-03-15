@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, tap, withLatestFrom } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { FriendRequestService } from 'src/app/shared-services/friend-request.service';
 import { IFriend } from 'src/app/shared-services/friend.interface';
 import { localStorageService } from 'src/app/shared-services/local-storage.service';
@@ -13,7 +13,7 @@ export interface Link {
 }
 
 export interface ExtendUser extends iUsers{
-  source: any;
+  id_friend_request: number;
 }
 
 @Component({
@@ -22,45 +22,46 @@ export interface ExtendUser extends iUsers{
   styleUrls: ['./user-list.component.scss'],
   providers: [UserService, FriendRequestService]
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit{
 
-  allFriends$ : Observable<IFriend[]> = this.friendRequestService.getFriendList();
+  updated$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  allUsers$ = this.userService.getAllUsers().pipe(
-    map(users => {
-      const id_user = this.localStorage.getFromStorage('id_user');
-      return users.filter(user => user.id_user !== +id_user);
-    }
-  ),
-    tap(users => {
-    users.forEach(user => this.getPhoto(user.id_user));
-  }));
 
-  allRequests$: Observable<iUsers[]> = this.friendRequestService.getFriendRequestList().pipe(
-    withLatestFrom(this.allUsers$),
-    map(([requests, allUsers]) => {
-      const id_user = this.localStorage.getFromStorage('id_user');
-      const ids: [number, boolean][] = [];
-      requests.forEach(r => {
-        if(r.id_user === +id_user) {
-          ids.push([r.id_friend, true]);
+  allUsers$ = this.updated$.pipe(
+  switchMap(() => {
+    return combineLatest(
+      this.userService.getAllUsers(), 
+      this.friendRequestService.getFriendRequestList(), 
+      this.friendRequestService.getFriendList(),
+      ).pipe(
+        map(([users, requests, friends]) => {
+          const id_user = this.localStorage.getFromStorage('id_user');
+          this.allRequests = this.getRequestsList(requests, users);
+          this.allFriends = this.getFriendsList(friends, users);
+  
+          return users.filter(user => user.id_user !== +id_user);
         }
-        else {
-          ids.push([r.id_user, false]);
-        }
-      });
-      console.log(ids);
-      return allUsers.filter(user => ids.map(item => item[0]).includes(user.id_user))
-      .map(user => ({...user, owner: ids.find(id => id[0] === user.id_user)?.[1]}));
-    })
-  );
+      ),
+        tap(users => {
+          users.forEach(user => this.getPhoto(user.id_user));
+          // this.updated$.next(false);
+        }));
+  }))
+  
 
   isImageLoading = false;
   source: Link[] = [];
 
-  constructor(private userService: UserService, private router: Router, private localStorage: localStorageService, private friendRequestService: FriendRequestService) { }
+  allRequests: iUsers[];
+  allFriends: iUsers[];
+
+  constructor(private userService: UserService, 
+    private router: Router, 
+    private localStorage: localStorageService, 
+    private friendRequestService: FriendRequestService) { }
 
   ngOnInit(): void {
+    
   }
 
   createRequest(id: number): void {
@@ -105,6 +106,36 @@ export class UserListComponent implements OnInit {
     const id_user = this.localStorage.getFromStorage('id_user');
     const obj: IFriend = {id_friend_request: null, id_user: id, id_friend: +id_user, status: 1};
     this.friendRequestService.updateRequest(obj).subscribe();
+  }
+
+  deleteRequest(id_friend: number): void {
+    const id_user = this.localStorage.getFromStorage('id_user');
+    this.friendRequestService.deleteRequest(+id_user, id_friend).subscribe();
+    this.updated$.next(true);
+  }
+
+  private getRequestsList(requests: IFriend[], allUsers: iUsers[]): iUsers[] {
+    const id_user = this.localStorage.getFromStorage('id_user');
+      const ids: [number, boolean][] = [];
+      requests.forEach(r => {
+        if(r.id_user === +id_user) {
+          ids.push([r.id_friend, true]);
+        }
+        else {
+          ids.push([r.id_user, false]);
+        }
+      });
+      return allUsers.filter(user => ids.map(item => item[0]).includes(user.id_user))
+      .map(user => ({...user, owner: ids.find(id => id[0] === user.id_user)?.[1]}));
+  } 
+
+  private getFriendsList(friends: IFriend[], allUsers: iUsers[]): iUsers[] {
+    return allUsers.filter(user => friends.map(r => r.id_user).includes(user.id_user));;
+  } 
+
+  sendMessage(id: number): void {
+    const id_user = this.localStorage.getFromStorage('id_user');
+    this.router.navigate([`chat/${id_user}/${id}`]);
   }
 
 }
