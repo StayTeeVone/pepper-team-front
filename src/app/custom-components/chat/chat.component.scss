@@ -2,13 +2,20 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100vw;
+    width: 99.1vw;
+    background: linear-gradient(to bottom right, #FFDEF2, #E6F0FF) ;
 
-    .top, .bottom {
+    .top {
         width: 100%;
-        height: 50%;
+        height: 89%;
         border: 1px solid black;
         padding: 10px;
+    }
+
+    .bottom {
+        width: 100%;
+        height: 11%;
+        border: 1px solid black;
     }
 
     ul {
@@ -34,4 +41,37 @@
         justify-content: flex-end;
         border: 1px solid blue;
     } 
+
+    .chatsendmsg {
+        display: flex;
+    }
+
+    textarea {
+        width: 90%;
+        margin-top: 10px;
+        margin-left: 10px;
+        border-radius: 20px;
+        font-size: 20px;
+        border: 2px solid orange;
+    }
+
+    .btn-send {
+        height: 67px;
+        width: 10%;
+        font-size: 20px;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border: 0;
+        background-color: orange;
+        border-radius: 20px;
+        color: black;
+    }
+
+    .btn-send:hover {
+        color: white;
+        background: rgb(179, 116, 0);
+        transition: .7s;
+    }
+
 }
