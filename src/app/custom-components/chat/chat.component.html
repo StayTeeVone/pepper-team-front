@@ -1,13 +1,5 @@
 <div class="wrapper">
     <div class="top">
-        <ng-container *ngIf="messages$ | async as messageList">
-            <ul>
-                <li *ngFor="let message of messageList" 
-                [ngClass]="message.id_user === +userID ? 'right': 'left'">{{message.message}}</li>
-            </ul>
-        </ng-container>
-    </div>
-    <div class="bottom">
         <ng-container *ngIf="friend$ | async as friend">
             <div class="photo">
                 <img [src]="getSource(friend.id_user)" style="width: 100px; height: 100px;">
@@ -20,13 +12,23 @@
             </div>
             {{user.name}}
         </ng-container>
+        <ng-container *ngIf="messages$ | async as messageList">
+            <ul>
+                <li *ngFor="let message of messageList" 
+                [ngClass]="message.id_user === +userID ? 'right': 'left'">{{message.message}}</li>
+            </ul>
+        </ng-container>
+    </div>
+    <div class="bottom">
         <ng-container>
             <form [formGroup]="chatForm" (ngSubmit)="onSubmit()">
-                <textarea [formControl]="msgField">
+                <div class="chatsendmsg">
+                    <textarea placeholder="  Написати повідомлення..."   [formControl]="msgField">
+                    
+                    </textarea>
 
-                </textarea>
-
-                <button type="submit" [disabled]="!chatForm.valid">Надіслати</button>
+                    <button class="btn-send" type="submit" [disabled]="!chatForm.valid">Надіслати</button>
+                </div>
             </form>
         </ng-container>
     </div>
