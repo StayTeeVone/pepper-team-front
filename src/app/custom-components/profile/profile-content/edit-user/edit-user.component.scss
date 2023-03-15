@@ -9,3 +9,21 @@
     display: flex;
     flex-direction: column;
 }
+
+input {
+    border: 1px solid rgb(255, 192, 192);
+    border-radius: 10px;
+    color: rgb(70, 70, 70);
+    background-color: rgb(225, 255, 187);
+    padding: 5px 10px;
+    font-weight: 350;
+}
+  
+input:hover {
+    border: 1px solid rgb(1, 179, 1);
+}
+  
+label {
+    font-weight: 500;
+    color: rgb(66, 66, 66);
+}

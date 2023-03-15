@@ -1,0 +1,166 @@
+:host {
+    display: flex;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 -10px 50px rgb(245, 191, 191);
+    border-radius: 15px;
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-users-ul, .list-requests-ul, .list-friends-ul{
+    list-style-type: none;
+    font-size: 20px;
+    margin: 0 35px;
+    font-weight: 500;
+}
+
+.list-users-li, .list-requests-li, .list-friends-li {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-to-profile {
+    background-color: rgb(201, 54, 54);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 8px;
+    min-height:30px;
+    min-width: 250px;
+    margin: 5px 10px;
+}
+  
+.btn-to-profile:hover {
+    background-color: rgb(141, 25, 25);
+    transition: 0.7s;
+}
+
+.add-to-friend {
+    border: none;
+    background-color: rgb(195, 246, 255);
+    font-weight: 250;
+    color: gray;
+    font-size: 14px;
+    cursor: cell;
+    max-width: 200px;
+    min-width: 200px;
+}
+
+.add-to-friend:hover {
+    background-color: rgb(124, 198, 211);
+    transition: .7s;
+    color: black;
+}
+
+.remove-from-friend{
+    border: none;
+    background-color: rgb(233, 102, 102);
+    font-weight: 250;
+    color: white;
+    font-size: 14px;
+    max-width: 200px;
+    min-width: 200px;
+}
+
+.remove-from-friend:hover {
+    background-color: rgb(187, 64, 64);
+    transition: .7s;
+    color: black;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.delete{
+    border: none;
+    background-color: rgb(233, 102, 102);
+    font-weight: 250;
+    color: white;
+    font-size: 14px;
+    max-width: 200px;
+    min-width: 200px;
+}
+
+.delete:hover{
+    background-color: rgb(187, 64, 64);
+    transition: .7s;
+    color: black;
+}
+
+.accept, .decline{
+    border: none;
+    font-weight: 250;
+    color: white;
+    font-size: 14px;
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.accept{
+    background-color: rgb(132, 219, 132);
+}
+
+.accept:hover{
+    background-color: rgb(56, 158, 56);
+    transition: .7s;
+    color: black;
+}
+
+.decline{
+    background-color: rgb(233, 102, 102);
+}
+
+.decline:hover{
+    background-color: rgb(187, 64, 64);
+    transition: .7s;
+    color: black;
+}
+
+.title-for-users-list, .title-for-requests-list, .title-for-friends-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    color: rgb(61, 61, 61);
+}
+
+.send-message-friend {
+    border: none;
+    max-width: 200px;
+    min-width: 200px;
+    border: none;
+    background-color: rgb(195, 246, 255);
+    font-weight: 250;
+    color: gray;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.send-message-friend:hover {
+    background-color: rgb(124, 198, 211);
+    transition: .7s;
+    color: black;
+}

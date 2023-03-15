@@ -12,6 +12,7 @@ export interface iUsers {
     phone: string;
     password: string;
     role: number;
+    owner?: boolean; 
 }
 
 @Injectable()
@@ -30,6 +31,13 @@ export class UserService {
 
     getPhoto(id_user: number): Observable<Blob> {
       return this.http.get(this.url + '/get-photo/' + id_user, {responseType : 'blob'});
+    }
+
+    getUserByID(id_user: number): Observable<iUsers> {
+        return this.http.get<iUsers>(this.url + '/' + id_user).pipe(
+            tap(() => console.log('get user')),
+            catchError((error) => throwError(error))
+          );
     }
 
     createUser(newWorker: iUsers): Observable<any> {
