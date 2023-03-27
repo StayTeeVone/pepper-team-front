@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { ChatService } from 'src/app/shared-services/chat.service';
 import { IMessage } from 'src/app/shared-services/message.interface';
 import { UserService, iUsers } from '../users.service';
-
-export interface Link {
-  id: number;
-  mySrc: any;
-}
 
 @Component({
   selector: 'app-chat',
@@ -22,13 +17,16 @@ export class ChatComponent implements OnInit {
 
   userID: number = this.activatedRoute.snapshot.params.id_user;
   friendID: number = this.activatedRoute.snapshot.params.id_friend;
+  friendSource: any;
+  userSource: any;
 
   friend$: Observable<iUsers>;
   user$: Observable<iUsers>;
-  messages$: Observable<IMessage[]> = this.chatService.getMessageList(this.userID, this.friendID);
+  friend: iUsers;
+  user: iUsers;
+  messages$: Observable<IMessage[]>; // = this.chatService.getMessageList(this.userID, this.friendID);
 
   isImageLoading = false;
-  source: Link[] = [];
 
   msgField = new FormControl('', Validators.required);
   chatForm = new FormGroup({
@@ -38,41 +36,44 @@ export class ChatComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private chatService: ChatService) { }
 
   ngOnInit(): void {
+    
     this.friend$ = this.userService.getUserByID(this.friendID).pipe(
       tap(friend => {
-        this.getPhoto(friend.id_user);
+        this.getPhoto(friend.id_user, false);
       })
     );
     this.user$ = this.userService.getUserByID(this.userID).pipe(
       tap(user => {
-        this.getPhoto(user.id_user);
+        this.getPhoto(user.id_user, true);
       })
     );
-    
+    this.messages$ = combineLatest(this.chatService.getMessageList(this.userID, this.friendID), this.friend$, this.user$).pipe(
+      map(([message, friend, user]) => {
+        this.friend = friend;
+        this.user = user;
+        return message;
+      })
+    );
   }
 
-  createImageFromBlob(id_user: number, photo: Blob): any {
+  createImageFromBlob(id_user: number, photo: Blob, userPhoto = true): any {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
-      let item: Link = {
-        id: id_user,
-        mySrc: reader.result
-      };
-      this.source.push(item);
+      if(userPhoto) {
+        this.userSource = reader.result;
+      } else {
+        this.friendSource = reader.result;
+      }
     }, false);
     if (photo) {
       reader.readAsDataURL(photo);
     }
   }
 
-  getSource(id_user: number): any{
-    return this.source.find(item => item.id === id_user)?.mySrc;
-  }
-
-  getPhoto(id_user: number): void {
+  getPhoto(id_user: number, userPhoto = true): void {
     this.isImageLoading = true;
     this.userService.getPhoto(id_user).subscribe(photo => {
-      this.createImageFromBlob(id_user, photo);
+      this.createImageFromBlob(id_user, photo, userPhoto);
       this.isImageLoading = false;
     },
     error => {
