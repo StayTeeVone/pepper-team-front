@@ -5,6 +5,71 @@
     width: 99.1vw;
     background: linear-gradient(to bottom right, #FFDEF2, #E6F0FF) ;
 
+    .messageWraper {
+        display: flex;
+        width: 100%;
+        &--fromUser {
+            justify-content: flex-end;
+        }
+        &--fromFriend {
+            justify-content: flex-start;
+        }
+
+        .message {
+            display: flex;
+            border: 1px solid orange;
+            border-radius: 10px;
+            padding: 5px 10px;
+            flex-direction: column;
+            color: rgb(61, 61, 61);
+            background: rgb(255, 255, 255);
+
+            &--fromUser {
+                margin-right: 10px;
+                justify-content: flex-end;
+            }
+            &--fromFriend {
+                margin-left: 10px;
+                justify-content: flex-start;
+            }
+        }
+    }
+
+    .time {
+        display: flex;
+        align-items: flex-end;
+        font-size: 9px;
+        color: black;
+        &-right {
+            justify-content: flex-end;
+        }
+        &-left {
+            justify-content: flex-start;
+        }
+    }
+
+    .innerTime {
+        background: rgb(255, 255, 255);
+        border-radius: 10px;
+        padding: 3px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .pepper-drop:hover {
+        box-shadow: 0 0 10px red;
+        transition: .5s;
+        fill-opacity: 0;
+        border-radius: 1px;
+    }
+
+    .pepper-drop1:hover {
+        box-shadow: 0 0 10px rgb(10, 205, 253);
+        transition: .5s;
+        fill-opacity: 0;
+        border-radius: 45% 5%;
+    }
+
     .top {
         width: 100%;
         height: 89%;
@@ -20,27 +85,34 @@
 
     ul {
         padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    .info {
+        flex-direction: column;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .line{
+        display: flex;
+        width: 100%;
+        // justify-content: space-around;
+    }
+    
+
+    .name{
+        padding-left: 10px;
     }
 
     ul > li {
         list-style: none;
-        margin-top: 5px;
-    }
-
-    .left {
-        display: flex;
+        margin-top: 10px;
         width: 100%;
-        align-items: start;
-        justify-content: flex-start;
-        border: 1px solid red;
     }
-
-    .right {
-        display: flex;
-        width: 100%;
-        justify-content: flex-end;
-        border: 1px solid blue;
-    } 
 
     .chatsendmsg {
         display: flex;
@@ -53,6 +125,7 @@
         border-radius: 20px;
         font-size: 20px;
         border: 2px solid orange;
+        background: rgb(255, 255, 255);
     }
 
     .btn-send {
@@ -74,4 +147,15 @@
         transition: .7s;
     }
 
+    .btn-pepper-edit, .btn-pepper-drop {
+        border: 0;
+        background: none;
+        margin: 0;
+        margin-left: 3px;
+        padding: 0;
+    }
+
+    .date {
+        text-align: center;
+    }
 }

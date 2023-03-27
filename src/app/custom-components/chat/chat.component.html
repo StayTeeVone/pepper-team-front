@@ -1,23 +1,77 @@
 <div class="wrapper">
     <div class="top">
-        <ng-container *ngIf="friend$ | async as friend">
-            <div class="photo">
-                <img [src]="getSource(friend.id_user)" style="width: 100px; height: 100px;">
+        <!-- <ng-container *ngIf="friend$ | async as friend">
+           <div class="num1">
+             <div class="photo">
+                <img [src]="getSource(friend.id_user)" style="width: 30px; height: 30px; border-radius: 50%;">
             </div>
-            {{friend.name}}
-        </ng-container>
-        <ng-container *ngIf="user$ | async as user">
-            <div class="photo">
-                <img [src]="getSource(user.id_user)" style="width: 100px; height: 100px;">
+            <div class="name">{{friend.name}}</div>
             </div>
-            {{user.name}}
-        </ng-container>
-        <ng-container *ngIf="messages$ | async as messageList">
+        </ng-container> -->
+
+        <ng-container *ngIf="messages$ | async as messageList"> 
             <ul>
-                <li *ngFor="let message of messageList" 
-                [ngClass]="message.id_user === +userID ? 'right': 'left'">{{message.message}}</li>
+                <li *ngFor="let message of messageList">
+
+                    <div class="date">
+                        {{message.messageDate | date:'MMM d'}}
+                    </div>
+
+                    <div class="messageWraper" [ngClass]="message.id_user === +userID ? 'messageWraper--fromUser': 'messageWraper--fromFriend'">
+                        <ng-container *ngIf="message.id_user === +userID; else friendPhoto">
+                            
+                            
+                            <div class="message message--fromUser">
+                                {{message.message}} 
+                                    <div class="time time-right">
+                                        <div class="innerTime">
+                                            {{message.messageDate | date:'shortTime'}}
+                                            <button class="btn-pepper-drop"><img src="assets/imgs/deletemessage.png" width="10" height="10"></button>
+                                            <button class="btn-pepper-edit"><img src="assets/imgs/pencil.png" width="10" height="10"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info">
+                                    <img [src]="userSource" style="width: 30px; height: 30px; border-radius: 50%;">
+                                    {{user.name}}
+                                </div>
+                            
+                            </ng-container>
+                        <ng-template #friendPhoto>
+                            <div class="info">
+                                <img [src]="friendSource" style="width: 30px; height: 30px; border-radius: 50%;">
+                                {{friend.name}}
+                            </div>
+                            <!-- {{message.messageDate | date:'MMM d'}} -->
+                            <div class="message message--fromFriend">
+                                {{message.message}}
+                                <div class="time time-left">
+                                    <div class="innerTime">
+                                        {{message.messageDate | date:'shortTime'}}
+                                        <button class="btn-pepper-drop"><img src="assets/imgs/deletemessage.png" width="10" height="10"></button>
+                                        <button class="btn-pepper-edit"><img src="assets/imgs/pencil.png" width="10" height="10"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </li>
+                <!-- <li *ngFor="let message of messageList" 
+                [ngClass]="message.id_user === +userID ? 'right': 'left'">
+                <img [src]="userSource" style="width: 30px; height: 30px; border-radius: 50%;">
+                {{message.message}}
+                </li> -->
             </ul>
         </ng-container>
+        
+        <!-- <ng-container *ngIf="user$ | async as user">
+            <div class="num2">
+            <div class="photo">
+                <img [src]="getSource(user.id_user)" style="width: 30px; height: 30px; border-radius: 50%;">
+            </div>
+            <div class="name">{{user.name}}</div>
+            </div>
+        </ng-container> -->
     </div>
     <div class="bottom">
         <ng-container>
