@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
 :host {
     display: flex;
     align-items: center;
@@ -7,63 +9,280 @@
     right: 0;
 }
 
-.logo {
+section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 99.2vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+section .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+section .pepper {
+    position: absolute;
+    scale: 0.65;
+    pointer-events: none;
+    animation: animatePepper 15s linear infinite;
+    width: 500px;
+    height: 500px;
+}
+
+section .down {
+    height: 170px;
+    width: 170px;
+}
+
+@keyframes animatePepper {
+    0% {
+        transform: translateX(calc(100% + 100vw));
+    }
+
+    50% {
+        transform: translateX(calc(-100% - 100vw));
+    }
+
+    50.01% {
+        transform: translateX(calc(-100% - 100vw)) rotateY(180deg);
+    }
+
+    100% {
+        transform: translateX(calc(100% + 100vw)) rotateY(180deg);
+    }
+}
+
+.register {
+    position: relative;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    border: 1px solid #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
 }
 
-.container-form {
-    min-width: 290px;
-    opacity: 0.9;
-    padding: 20px;
-    margin: 5px 10px;
-    border-radius: 5px 0;
-    border: 3px solid rgb(217, 247, 187);
-}
-
-.form-group {
-    margin: 10px 5px;
+.register h2 {
+    position: relative;
+    width: 100%;
     text-align: center;
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #62d82b;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px black;
 }
 
-.form-group-toLogin, .small-btn{
-    margin: 5px 5px;
-    text-align: center;
-    font-size: 85%; 
-    position: relative; 
+.register .inputBox {
+    position: relative;
 }
 
-.label-h {
-    display: flex;
-}
-
-.btn-register {
-    background-color: #9acd32;
-    color: white;
-    border: none;
+.register .inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 15px 20px;
+    outline: none;
+    font-size: 1.25em;
+    color: #4eb61e;
     border-radius: 5px;
-    padding: 5px;
-    min-height:30px; 
-    min-width: 80px;
+    border: none;
+    margin-bottom: 30px;
 }
 
-.btn-register:hover {
-    background-color: #7aa524;
-    transition: 0.7s;
+.register .inputBox input::placeholder {
+    color: #4eb61e;
+}
+
+.register .inputBox #btn {
+    position: relative;
+    border: none;
+    outline: none;
+    background: #62d82b;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.25em;
+    font-weight: 500;
+    transition: .5s;
+}
+
+.register .inputBox #btn:hover {
+    background: #396e20;
+}
+
+.register .group {
+    display: flex;
+    justify-content: center;
+}
+
+.register .group a {
+    font-size: 1.25em;
+    color: #62d82b;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.register .group a:nth-child(2) {
+    text-decoration: underline;
+}
+
+.leaves {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.leaves .set {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.leaves .set div {
+    position: absolute;
+    display: block;
+}
+
+.leaves .set div:nth-child(1) {
+    left: 20%;
+    animation: animate 20s linear infinite;
+}
+
+.leaves .set div:nth-child(2) {
+    left: 50%;
+    animation: animate 14s linear infinite;
+}
+
+.leaves .set div:nth-child(3) {
+    left: 70%;
+    animation: animate 12s linear infinite;
+}
+
+.leaves .set div:nth-child(4) {
+    left: 5%;
+    animation: animate 15s linear infinite;
+}
+
+.leaves .set div:nth-child(5) {
+    left: 85%;
+    animation: animate 18s linear infinite;
+}
+
+.leaves .set div:nth-child(6) {
+    left: 90%;
+    animation: animate 12s linear infinite;
+}
+
+.leaves .set div:nth-child(7) {
+    left: 15%;
+    animation: animate 14s linear infinite;
+}
+
+.leaves .set div:nth-child(8) {
+    left: 60%;
+    animation: animate 15s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        top: -10%;
+        transform: translateX(20px) rotate(0deg);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        transform: translateX(-20px) rotate(45deg);
+    }
+
+    40% {
+        transform: translateX(-20px) rotate(90deg);
+    }
+
+    60% {
+        transform: translateX(20px) rotate(180deg);
+    }
+
+    80% {
+        transform: translateX(-20px) rotate(45deg);
+    }
+
+    100% {
+        top: 110%;
+        transform: translateX(20px) rotate(225deg);
+    }
 }
 
 .btn-to-login {
-    background-color: rgb(60, 164, 233);
-    color: white;
     border: none;
-    border-radius: 5px;
-    padding: 5px;
-    min-height:30px; 
-    min-width: 80px;
+    color: #52ff02;
+    text-decoration: underline;
+    background: none;
+    font-size: 18px;
 }
 
-.btn-to-login:hover {
-    background-color: rgb(12, 104, 165);
-    transition: 0.7s;
+.p-group {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 415px)  {
+    input {
+        height: 40px;
+        max-width: 300px;
+    }
+
+    .down {
+        height: 40px;
+        width: 40px;
+    }
+
+    .register {
+        width: 90vw;
+    }
+
+    #btn {
+        height: 60px;
+    }
+
+    .register .inputBox .form-control {
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+
+    .register h2 {
+        font-size: 28px;
+    }
+
+    .group {
+        text-align: center;
+    }
+
+    section {
+        width: 100vw;
+    }
 }
