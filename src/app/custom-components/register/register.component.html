@@ -1,8 +1,52 @@
-<div class="container-form">
-    <div class="logo">
-        <img src="/assets/imgs/pepper_256px_sec.png" alt="pepper_logo" height="75" width="75">
-		<p>User Sign Up</p>
+<section>
+	<div class="leaves">
+        <div class="set">
+            <div><img src="/assets/imgs/pepper_256px_one_green.png" class="down"></div>
+            <div><img src="/assets/imgs/pepper_256px_two.png" class="down"></div>
+            <div><img src="/assets/imgs/pepper_256px_three.png" class="down"></div>
+            <div><img src="/assets/imgs/pepper_256px_two.png" class="down"></div>
+            <div><img src="/assets/imgs/pepper_256px_one_green.png" class="down"></div>
+            <div><img src="/assets/imgs/pepper_256px_two.png" class="down"></div>
+            <div><img src="/assets/imgs/pepper_256px_three.png" class="down"></div>
+            <div><img src="/assets/imgs/pepper_256px_two.png" class="down"></div>
+        </div>
+    </div>
+	<img src="/assets/imgs/bg-for-autorizaition.jpg" class="bg">
+    <img src="/assets/imgs/pepper_256px_4_green.png" class="pepper">
+	<div class="register">
+		<h2>New Pepper User</h2>
+		<form (ngSubmit)="onSubmit(usersForm)" #usersForm = "ngForm">
+			<div class="inputBox">
+					<input type="text" class="form-control" [(ngModel)]='user.name' ngModel #name = 'ngModel'
+					name="name" placeholder="Your name">
+			</div>
+			<div class="inputBox">
+                <input type="email" [(ngModel)]="user.email" ngModel #email = 'ngModel' 
+                class="form-control" name="email" placeholder="Your email">                               
+            </div>
+			<div class="inputBox">
+					<input type="text" class="form-control" 
+					[(ngModel)]='user.phone' ngModel #phone = 'ngModel'
+					name="phone" placeholder="Your number phone">
+			</div>
+			<div class="inputBox">
+					<input type="password" class="form-control" 
+					[(ngModel)]='user.password' ngModel #password = 'ngModel'
+					name="password" placeholder="Your passwrod">
+			</div>						
+			<div class="inputBox">						
+                <input type="submit" id="btn" value="Register">
+            </div>
+		</form>
+		<div class="group">
+            <p class="p-group">Have an account?
+                <button (click)="goToLogin()" class="btn-to-login">Sign In</button>
+            </p>
+        </div>
 	</div>
+</section>
+
+<!-- <div class="container-form">
 
     <form (ngSubmit)="onSubmit(usersForm)" #usersForm = "ngForm">
         <div class="form-group">
@@ -38,4 +82,4 @@
 			<button (click)="goToLogin()" class="btn-to-login small-btn">Sign In</button>
 		</p>
 	</div>
-</div>
+</div> -->
