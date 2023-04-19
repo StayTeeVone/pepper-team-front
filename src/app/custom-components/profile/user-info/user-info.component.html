@@ -1,17 +1,34 @@
-<div class="logo">
-    <ng-container>
-        <img src="assets/imgs/user_icon.png" width="120" height="160">
-    </ng-container>
-</div>
-<div class="user-info">
-    <ng-container *ngIf="name">
-        <p>Користувач: {{name}} </p>
-    </ng-container>
-    <ng-container *ngIf="email">
-        <p>Пошта: {{email}} </p>
-    </ng-container>
-    <ng-container *ngIf="phone">
-        <p>Номер телефону: {{phone}} </p>
-    </ng-container>
+<div class="wrapper">
+    <div class="logo">
+        <ng-container>
+            <img src="assets/imgs/user_icon.png" class="icon-logo">
+        </ng-container>
+    </div>
+    <div class="user-info">
+        <ng-container *ngIf="name">
+            <p class="p-name">{{name}}</p>
+        </ng-container>
+        <div class="user-details-info">
+            <ng-container *ngIf="phone">
+                <div class="user-phone">
+                    <img src="/assets/imgs/phone_128px.png" class="img-phone">
+                    <p class="p-phone">{{phone}}</p>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="email">
+                <div class="user-email">
+                    <img src="/assets/imgs/email_128px.png" class="img-phone">
+                    <p class="p-email">{{email}}</p>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="exit-profile">
+        <ng-container>
+            <button class="btn-exit" type="submit">
+                <img src="/assets/imgs/exit-pepper.png" class="img-exit-pepper">
+            </button>
+        </ng-container>
+    </div>
 </div>
 

@@ -14,33 +14,33 @@
 	<img src="/assets/imgs/bg-for-autorizaition.jpg" class="bg">
     <img src="/assets/imgs/pepper_256px_4_green.png" class="pepper">
 	<div class="register">
-		<h2>New Pepper User</h2>
+		<h2>Реєстрація</h2>
 		<form (ngSubmit)="onSubmit(usersForm)" #usersForm = "ngForm">
 			<div class="inputBox">
 					<input type="text" class="form-control" [(ngModel)]='user.name' ngModel #name = 'ngModel'
-					name="name" placeholder="Your name">
+					name="name" placeholder="Ваше ФІО">
 			</div>
 			<div class="inputBox">
                 <input type="email" [(ngModel)]="user.email" ngModel #email = 'ngModel' 
-                class="form-control" name="email" placeholder="Your email">                               
+                class="form-control" name="email" placeholder="Ваш адрес пошта">                               
             </div>
 			<div class="inputBox">
 					<input type="text" class="form-control" 
 					[(ngModel)]='user.phone' ngModel #phone = 'ngModel'
-					name="phone" placeholder="Your number phone">
+					name="phone" placeholder="Ваш номер телефону">
 			</div>
 			<div class="inputBox">
 					<input type="password" class="form-control" 
 					[(ngModel)]='user.password' ngModel #password = 'ngModel'
-					name="password" placeholder="Your passwrod">
+					name="password" placeholder="Ваш пароль">
 			</div>						
 			<div class="inputBox">						
-                <input type="submit" id="btn" value="Register">
+                <input type="submit" id="btn" value="Зареєструватись">
             </div>
 		</form>
 		<div class="group">
-            <p class="p-group">Have an account?
-                <button (click)="goToLogin()" class="btn-to-login">Sign In</button>
+            <p class="p-group">Маєш обліковий запис?
+                <button (click)="goToLogin()" class="btn-to-login">Увійти</button>
             </p>
         </div>
 	</div>

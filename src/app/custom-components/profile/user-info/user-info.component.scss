@@ -1,16 +1,26 @@
 :host{
-    display: flex;
-    height: 25%;
+    font-family: 'Poppins', sans-serif;
+    height: 24%;
     border-bottom: 3px solid red;
     // position: absolute;
 }
 
-.logo {
+.wrapper {
     display: flex;
     flex-direction: row;
+}
+
+.logo {
+    display: flex;
     align-items: center;
     width: 35%;
     justify-content: center;
+    margin-top: 15px;
+
+    .icon-logo {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 .user-info {
@@ -21,3 +31,94 @@
     width: 65%;
 }
 
+.p-name {
+    font-size: 38px;
+    font-weight: 650;
+    color: #232323;
+}
+
+.user-phone {
+    display: flex;
+}
+
+.user-email {
+    display: flex;
+    margin: 0 30px;
+}
+
+.p-email, .p-phone {
+    margin: 0 5px;
+    color: #232323;
+}
+
+.user-details-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-exit {
+    background: none;
+    border: none;
+    width: 100px;
+    height: 80px;
+}
+
+.img-phone, .img-email {
+    width: 20px;
+    height: 20px;
+}
+
+.img-exit-pepper {
+    width: 80px;
+    height: 80px;
+}
+
+@media screen and (max-width: 415px)  {
+
+    .wrapper {
+        display: flex;
+        width: 100vw;
+    }
+
+    .user-name {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .user-info {
+        margin: 5px 10px;
+    }
+
+    .user-phone {
+        display: flex;
+    }
+    
+    .user-email {
+        display: flex;
+        margin: 0;
+    }
+    
+    .p-email, .p-phone {
+        margin: 0 5px;
+        font-size: 14px;
+    }
+    
+    .user-details-info {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn-exit {
+        background: none;
+        border: none;
+        width: 90px;
+        height: 40px;
+    } 
+
+    .icon-logo {
+        margin-left: 5px;
+        width: 60px;
+        height: 60px;
+    }
+
+}

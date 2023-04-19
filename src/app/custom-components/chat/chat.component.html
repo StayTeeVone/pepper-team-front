@@ -11,9 +11,9 @@
 
         <ng-container *ngIf="messages$ | async as messageList"> 
             <ul>
-                <li *ngFor="let message of messageList">
+                <li *ngFor="let message of messageList; let i = index">
 
-                    <div class="date">
+                    <div class="date" *ngIf="i > 0 && messageList[i - 1].unFormatDate != messageList[i].unFormatDate || i === 0">
                         {{message.messageDate | date:'MMM d'}}
                     </div>
 
@@ -22,12 +22,12 @@
                             
                             
                             <div class="message message--fromUser">
-                                {{message.message}} 
+                                {{message.message}}
                                     <div class="time time-right">
                                         <div class="innerTime">
                                             {{message.messageDate | date:'shortTime'}}
-                                            <button class="btn-pepper-drop"><img src="assets/imgs/deletemessage.png" width="10" height="10"></button>
-                                            <button class="btn-pepper-edit"><img src="assets/imgs/pencil.png" width="10" height="10"></button>
+                                            <button class="btn-pepper-drop" (click)="deleteMessage(message.id_messages)"><img src="assets/imgs/deletemessage.png" width="10" height="10"></button>
+                                            <button class="btn-pepper-edit" (click)="updateMessage(message.id_messages, message.message)"><img src="assets/imgs/pencil.png" width="10" height="10"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@
                     
                     </textarea>
 
-                    <button class="btn-send" type="submit" [disabled]="!chatForm.valid">Надіслати</button>
+                    <button class="btn-send" type="submit" [disabled]="!chatForm.value">Надіслати</button>
                 </div>
             </form>
         </ng-container>

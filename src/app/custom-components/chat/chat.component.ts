@@ -33,6 +33,9 @@ export class ChatComponent implements OnInit {
     message: this.msgField
   });
 
+  update = false;
+  id_msg = null;
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private chatService: ChatService) { }
 
   ngOnInit(): void {
@@ -47,13 +50,7 @@ export class ChatComponent implements OnInit {
         this.getPhoto(user.id_user, true);
       })
     );
-    this.messages$ = combineLatest(this.chatService.getMessageList(this.userID, this.friendID), this.friend$, this.user$).pipe(
-      map(([message, friend, user]) => {
-        this.friend = friend;
-        this.user = user;
-        return message;
-      })
-    );
+    this.messages$ = this.getMessages();
   }
 
   createImageFromBlob(id_user: number, photo: Blob, userPhoto = true): any {
@@ -83,14 +80,45 @@ export class ChatComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const obj: IMessage = {
-      id_messages: null,
-      message: this.chatForm.value.message,
-      id_user: this.userID,
-      id_friend: this.friendID,
-      status: null
-    };
-    this.chatService.createMessage(obj).subscribe();
+    if (this.update) {
+      this.chatService.updateMessage(this.id_msg, this.chatForm.value.message).subscribe(() => {this.messages$ = this.getMessages() });
+      this.id_msg = null;
+      this.update = false;
+    } else {
+      const obj: IMessage = {
+        id_messages: null,
+        message: this.chatForm.value.message,
+        id_user: this.userID,
+        id_friend: this.friendID,
+        status: null,
+        messageDate: '',
+        unFormatDate: ''
+      };
+      this.chatService.createMessage(obj).subscribe();
+    }
+  }
+
+  deleteMessage(id: number): void {
+    this.chatService.deleteMessage(id).subscribe(() => {this.messages$ = this.getMessages();});
+  }
+
+  getMessages(): Observable<IMessage[]> {
+    return combineLatest(this.chatService.getMessageList(this.userID, this.friendID), this.friend$, this.user$).pipe(
+      map(([message, friend, user]) => {
+        this.friend = friend;
+        this.user = user;
+        return message;
+      })
+    );
+  }
+
+  updateMessage(id: number, msg: string): void {
+    this.msgField = new FormControl(msg, Validators.required);
+    this.chatForm = new FormGroup({
+      message: this.msgField
+    });
+    this.id_msg = id;
+    this.update = true;
   }
 
 }

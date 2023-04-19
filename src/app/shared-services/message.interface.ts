@@ -4,4 +4,6 @@ export interface IMessage {
     id_user: number;
     id_friend: number;
     status: number;
+    messageDate: string;
+    unFormatDate: string;
 }

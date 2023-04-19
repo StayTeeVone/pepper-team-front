@@ -1,8 +1,5 @@
 <div class="lists-btn" >
-    <button type="submit" class="btn-list" (click)="toggle = !toggle">Налаштування &#8659;</button>
-    <button type="submit" class="btn-list-settings" *ngIf="toggle" (click)="goToEdit()">Персональна інформація</button>
-    <button type="submit" class="btn-list-settings" *ngIf="toggle">Оновлення фото</button>
-    <button type="submit" class="btn-list">Повідомлення</button>
-    <button type="submit" class="btn-list">Новини</button>
-    <button type="submit" class="btn-list" (click)="goToUserList()">Пошук нових друзів</button>
+    <button type="submit" class="button" (click)="goToUserList()">Пошук нових друзів</button>
+    <button type="submit" class="button" (click)="toggle = !toggle">Налаштування &#8659;</button>
+    <button type="submit" class="button" *ngIf="toggle" (click)="goToEdit()">Персональна інформація</button>
 </div>

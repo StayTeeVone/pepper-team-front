@@ -14,26 +14,26 @@
     <img src="/assets/imgs/bg-for-autorizaition.jpg" class="bg">
     <img src="/assets/imgs/pepper_256px_4.png" class="pepper">
     <div class="login">
-        <h2>Sign In</h2>
+        <h2>Авторизація</h2>
         <form (ngSubmit)="onSubmit(usersForm)" #usersForm = "ngForm">
             <div class="inputBox">
                 <input type="email" ngModel #email = 'ngModel' 
-                class="form-control" name="email" placeholder="Your email">                               
+                class="form-control" name="email" placeholder="Ваша пошта">                               
             </div>
             <div class="inputBox">
                 <input type="password" ngModel #password = 'ngModel' 
-                class="form-control"  name="password" placeholder="Your password">
+                class="form-control"  name="password" placeholder="Ваш пароль">
             </div>
             <ng-container *ngIf="error$ | async as error">
                 <span class="error">{{error}}</span>
             </ng-container>
             <div class="inputBox">						
-                <input type="submit" id="btn" value="Login">
+                <input type="submit" id="btn" value="Вхід">
             </div>
         </form>
         <div class="group">
-            <p class="p-group">Don't have an account?
-                <button (click)="goToRegister()" class="btn-to-register">Register</button>
+            <p class="p-group">Ще не маєш акаунту?
+                <button (click)="goToRegister()" class="btn-to-register">Зареєструватись</button>
             </p>
         </div>
     </div>
