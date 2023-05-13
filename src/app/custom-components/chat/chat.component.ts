@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
@@ -35,6 +35,16 @@ export class ChatComponent implements OnInit {
 
   update = false;
   id_msg = null;
+
+  @HostListener('keydown', ['$event'])
+  keyBind(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      this.clearForm();
+      this.id_msg = null;
+      this.update = false;
+    }
+    // console.log(event);
+  }
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private chatService: ChatService) { }
 
@@ -79,9 +89,19 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  clearForm(): void {
+    this.msgField.setValue("");
+    this.chatForm = new FormGroup({
+      message: this.msgField
+    });
+  }
+
   onSubmit(): void {
     if (this.update) {
-      this.chatService.updateMessage(this.id_msg, this.chatForm.value.message).subscribe(() => {this.messages$ = this.getMessages() });
+      this.chatService.updateMessage(this.id_msg, this.chatForm.value.message).subscribe(() => {
+        this.messages$ = this.getMessages();
+        this.clearForm();
+      });
       this.id_msg = null;
       this.update = false;
     } else {
@@ -94,7 +114,10 @@ export class ChatComponent implements OnInit {
         messageDate: '',
         unFormatDate: ''
       };
-      this.chatService.createMessage(obj).subscribe();
+      this.chatService.createMessage(obj).subscribe(() => { 
+        this.messages$ = this.getMessages();
+        this.clearForm();
+      });
     }
   }
 
@@ -119,6 +142,12 @@ export class ChatComponent implements OnInit {
     });
     this.id_msg = id;
     this.update = true;
+  }
+
+  closeEdit(): void {
+    this.clearForm();
+    this.id_msg = null;
+    this.update = false;
   }
 
 }

@@ -27,7 +27,13 @@
                                         <div class="innerTime">
                                             {{message.messageDate | date:'shortTime'}}
                                             <button class="btn-pepper-drop" (click)="deleteMessage(message.id_messages)"><img src="assets/imgs/deletemessage.png" width="10" height="10"></button>
-                                            <button class="btn-pepper-edit" (click)="updateMessage(message.id_messages, message.message)"><img src="assets/imgs/pencil.png" width="10" height="10"></button>
+                                            <ng-container *ngIf="!update; else closeUpdate">
+                                                <button class="btn-pepper-edit" (click)="updateMessage(message.id_messages, message.message)"><img src="assets/imgs/pencil.png" width="10" height="10"></button>
+                                            </ng-container>
+                                            <ng-template #closeUpdate>
+                                                <button class="btn-pepper-edit" (click)="closeEdit()"><img src="assets/imgs/close_edit.png" width="10" height="10"></button>
+                                            </ng-template>
+                                            
                                         </div>
                                     </div>
                                 </div>
